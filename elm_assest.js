@@ -1,6 +1,5 @@
 /**
  * @YoPlus
- * 变量：elmck: 必填，账号cookie
  * cron: 0 8,16,23 * * *
  */
 
