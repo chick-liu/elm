@@ -1,6 +1,6 @@
 /*
 
-拉库：ql repo https://kkgithub.com/yupluse/elm.git "^ele" "" "common|ql"
+拉库：ql repo https://kkgithub.com/yupluse/elm.git "^ele" "" "common|ql|ele_sendNotify"
 
 */
 const USER_AGENTS = [
