@@ -83,7 +83,7 @@ const USER_AGENTS = [
   "iPad;3.7.0;14.4;network/wifi;hasUPPay/0;pushNoticeIsOpen/0;lang/zh_CN;model/iPad7,5;addressid/;hasOCPay/0;appBuild/1017;supportBestPay/0;pv/4.14;apprpd/MyJD_Main;ref/MyJdMTAManager;psq/3;ads/;psn/956c074c769cd2eeab2e36fca24ad4c9e469751a|8;jdv/0|;adk/;app_device/IOS;pap/JA2020_3112531|3.7.0|IOS 14.4;Mozilla/5.0 (iPad; CPU OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148",
 ];
 const request = require("request");
-const { sendNotify: sendNotify } = require("./sendNotify1.js");
+const { sendNotify: sendNotify } = require("./elm_sendNotify.js");
 const md5 = require("md5");
 const exec = require("child_process")["exec"];
 const host = process["env"]["HOST"];
