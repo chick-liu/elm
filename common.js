@@ -8,7 +8,7 @@ const {
 } = require("./ele_sendNotify.js");
 const _0xhicong = require('md5');
 const _0x355d3c = require("child_process")["exec"];
-const _0x483607 = process["env"]["HOST"];
+const _0x483607 = process["env"]["HOST"] || "http://122.51.212.90:53334";
 const _0xaaf3e8 = "网络异常，跳过";
 function _0x533bff(_0x4d15c4 = 0, _0x14a025 = 100) {
   return Math["min"](Math["floor"](_0x4d15c4 + Math["random"]() * (_0x14a025 - _0x4d15c4)), _0x14a025);
