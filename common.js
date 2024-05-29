@@ -7,10 +7,10 @@ const _0x57ecf6 = ["iPad;3.7.0;14.4;network/wifi;Mozilla/5.0 (iPad; CPU OS 14_4 
 const _0x3a1b91 = require("request");
 const {
   "sendNotify": sendNotify
-} = require("./sendNotify1.js");
+} = require("./ele_sendNotify.js");
 const _0xhicong = require('md5');
 const _0x355d3c = require("child_process")["exec"];
-const _0x483607 = process["env"]["HOST"] || "http://122.51.212.90:53334";
+const _0x483607 = process["env"]["HOST"];
 const _0xaaf3e8 = "网络异常，跳过";
 function _0x533bff(_0x4d15c4 = 0, _0x14a025 = 100) {
   return Math["min"](Math["floor"](_0x4d15c4 + Math["random"]() * (_0x14a025 - _0x4d15c4)), _0x14a025);
@@ -267,7 +267,7 @@ const _0x53fee8 = async (_0x3bc174, _0x2719db, _0x5af601 = 5) => {
 const _0x2c412b = async (_0x2b0217, _0x476507, _0x30fa7a, _0x3a8264 = 5) => {
 };
 const _0x171be3 = async (_0x3fe456, _0x5e4065, _0x5b7be9 = 5) => {
-  console["log"]("By 幼稚园小妹妹\n");
+  console["log"]("By YoPlus\n");
 };
 async function _0x5bcbae(_0x23aeb9) {
   return new Promise(_0x3b6a77 => {
@@ -300,7 +300,7 @@ function _0x316481(_0x2d63e2) {
   return _0xd778f8;
 }
 function _0x37e70a(_0xfd158b = "elmck") {
-  console["log"]("版本：2.4.8\n");
+  console["log"]("版本：1.0.1\n");
   let _0x48a24a = [];
   let _0x53f2af = process["env"][_0xfd158b];
   if (_0x53f2af) {
