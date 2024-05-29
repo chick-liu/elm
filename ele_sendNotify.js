@@ -13,6 +13,11 @@
 const querystring = require('querystring');
 const $ = new Env();
 const timeout = 15000; //超时时间(单位毫秒)
+
+// =======================================wxpush设置区域=======================================
+//官方文档：https://wxpusher.zjiecode.com/
+//WX_PUSH_TOKEN：微信扫码登录后一对一推送
+let WX_PUSH_TOKEN = 'AT_l2zR8LFfpdPUtaKNrVI3yBjRWyF9MaXa';
 // =======================================gotify通知设置区域==============================================
 //gotify_url 填写gotify地址,如https://push.example.de:8080
 //gotify_token 填写gotify的消息应用token
@@ -90,11 +95,6 @@ let IGOT_PUSH_KEY = '';
 let PUSH_PLUS_TOKEN = '';
 let PUSH_PLUS_USER = '';
 
-
-// =======================================wxpush设置区域=======================================
-//官方文档：https://wxpusher.zjiecode.com/
-//WX_PUSH_TOKEN：微信扫码登录后一对一推送
-let WX_PUSH_TOKEN = 'AT_l2zR8LFfpdPUtaKNrVI3yBjRWyF9MaXa';
 
 
 //==========================云端环境变量的判断与接收=========================
@@ -211,10 +211,10 @@ async function sendNotify(
     text,
     desp,
     params = {},
-    author = '\n\n关注飞机频道：https://t.me/tigerorrose，及时获取脚本更新信息',
+    author = '\n\nQQ群：870906127\n\n京东爱心公益活动',
 ) {
     //提供6种通知
-    if (process.env.pushDesc){
+    if (process.env.pushDesc) {
         author = '\n\n' + process.env.pushDesc;
     }
     desp += author; //增加作者信息，防止被贩卖等
@@ -277,7 +277,7 @@ function gobotNotify(text, desp, time = 2100) {
         if (GOBOT_URL) {
             const options = {
                 url: `${GOBOT_URL}?access_token=${GOBOT_TOKEN}&${GOBOT_QQ}`,
-                json: {message: `${text}\n${desp}`},
+                json: { message: `${text}\n${desp}` },
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -497,7 +497,7 @@ function tgBotNotify(text, desp) {
                         },
                     }),
                 };
-                Object.assign(options, {agent});
+                Object.assign(options, { agent });
             }
             $.post(options, (err, resp, data) => {
                 try {
@@ -951,7 +951,7 @@ function Env(t, s) {
 
         getScript(t) {
             return new Promise(s => {
-                $.get({url: t}, (t, e, i) => s(i))
+                $.get({ url: t }, (t, e, i) => s(i))
             })
         }
 
@@ -963,8 +963,8 @@ function Env(t, s) {
                 o = o ? 1 * o : 20, o = s && s.timeout ? s.timeout : o;
                 const [h, a] = i.split("@"), r = {
                     url: `http://${a}/v1/scripting/evaluate`,
-                    body: {script_text: t, mock_type: "cron", timeout: o},
-                    headers: {"X-Key": h, Accept: "*/*"}
+                    body: { script_text: t, mock_type: "cron", timeout: o },
+                    headers: { "X-Key": h, Accept: "*/*" }
                 };
                 $.post(r, (t, s, i) => e(i))
             }).catch(t => this.logErr(t))
@@ -1055,8 +1055,8 @@ function Env(t, s) {
             t.headers && (delete t.headers["Content-Type"], delete t.headers["Content-Length"]), this.isSurge() || this.isLoon() ? $httpClient.get(t, (t, e, i) => {
                 !t && e && (e.body = i, e.statusCode = e.status), s(t, e, i)
             }) : this.isQuanX() ? $task.fetch(t).then(t => {
-                const {statusCode: e, statusCode: i, headers: o, body: h} = t;
-                s(null, {status: e, statusCode: i, headers: o, body: h}, h)
+                const { statusCode: e, statusCode: i, headers: o, body: h } = t;
+                s(null, { status: e, statusCode: i, headers: o, body: h }, h)
             }, t => s(t)) : this.isNode() && (this.initGotEnv(t), this.got(t).on("redirect", (t, s) => {
                 try {
                     const e = t.headers["set-cookie"].map(this.cktough.Cookie.parse).toString();
@@ -1065,8 +1065,8 @@ function Env(t, s) {
                     this.logErr(t)
                 }
             }).then(t => {
-                const {statusCode: e, statusCode: i, headers: o, body: h} = t;
-                s(null, {status: e, statusCode: i, headers: o, body: h}, h)
+                const { statusCode: e, statusCode: i, headers: o, body: h } = t;
+                s(null, { status: e, statusCode: i, headers: o, body: h }, h)
             }, t => s(t)))
         }
 
@@ -1075,14 +1075,14 @@ function Env(t, s) {
             if (t.body && t.headers && !t.headers["Content-Type"] && (t.headers["Content-Type"] = "application/x-www-form-urlencoded"), delete t.headers["Content-Length"], this.isSurge() || this.isLoon()) $httpClient.post(t, (t, e, i) => {
                 !t && e && (e.body = i, e.statusCode = e.status), s(t, e, i)
             }); else if (this.isQuanX()) t.method = "POST", $task.fetch(t).then(t => {
-                const {statusCode: e, statusCode: i, headers: o, body: h} = t;
-                s(null, {status: e, statusCode: i, headers: o, body: h}, h)
+                const { statusCode: e, statusCode: i, headers: o, body: h } = t;
+                s(null, { status: e, statusCode: i, headers: o, body: h }, h)
             }, t => s(t)); else if (this.isNode()) {
                 this.initGotEnv(t);
-                const {url: e, ...i} = t;
+                const { url: e, ...i } = t;
                 this.got.post(e, i).then(t => {
-                    const {statusCode: e, statusCode: i, headers: o, body: h} = t;
-                    s(null, {status: e, statusCode: i, headers: o, body: h}, h)
+                    const { statusCode: e, statusCode: i, headers: o, body: h } = t;
+                    s(null, { status: e, statusCode: i, headers: o, body: h }, h)
                 }, t => s(t))
             }
         }
@@ -1103,7 +1103,7 @@ function Env(t, s) {
         }
 
         msg(s = t, e = "", i = "", o) {
-            const h = t => !t || !this.isLoon() && this.isSurge() ? t : "string" == typeof t ? this.isLoon() ? t : this.isQuanX() ? {"open-url": t} : void 0 : "object" == typeof t && (t["open-url"] || t["media-url"]) ? this.isLoon() ? t["open-url"] : this.isQuanX() ? t : void 0 : void 0;
+            const h = t => !t || !this.isLoon() && this.isSurge() ? t : "string" == typeof t ? this.isLoon() ? t : this.isQuanX() ? { "open-url": t } : void 0 : "object" == typeof t && (t["open-url"] || t["media-url"]) ? this.isLoon() ? t["open-url"] : this.isQuanX() ? t : void 0 : void 0;
             $.isMute || (this.isSurge() || this.isLoon() ? $notification.post(s, e, i, h(o)) : this.isQuanX() && $notify(s, e, i, h(o))), this.logs.push("", "==============\ud83d\udce3\u7cfb\u7edf\u901a\u77e5\ud83d\udce3=============="), this.logs.push(s), e && this.logs.push(e), i && this.logs.push(i)
         }
 
