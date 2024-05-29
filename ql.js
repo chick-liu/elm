@@ -8,11 +8,11 @@ const path = require('path');
 const qlDir = '/ql';
 const fs = require('fs');
 let Fileexists = fs.existsSync('/ql/data/config/auth.json');
-let authFile = "";
+let authFile="";
 if (Fileexists)
-  authFile = "/ql/data/config/auth.json"
+  authFile="/ql/data/config/auth.json"
 else
-  authFile = "/ql/config/auth.json"
+  authFile="/ql/config/auth.json"
 //const authFile = path.join(qlDir, 'config/auth.json');
 
 const api = got.extend({
@@ -25,7 +25,7 @@ async function getToken() {
   return authConfig.token;
 }
 
-module.exports.getEnvs = async (envName = 'elmck') => {
+module.exports.getEnvs = async (envName='elmck') => {
   const token = await getToken();
   const body = await api({
     url: 'api/envs',
@@ -41,7 +41,7 @@ module.exports.getEnvs = async (envName = 'elmck') => {
   return body.data;
 };
 
-async function getEnvsByName(name) {
+async function getEnvsByName(name){
   const token = await getToken();
   const body = await api({
     url: 'api/envs',
@@ -57,7 +57,7 @@ async function getEnvsByName(name) {
   return body.data;
 }
 
-module.exports.getEnvsByName = getEnvsByName
+module.exports.getEnvsByName =  getEnvsByName
 
 module.exports.getEnvsCount = async () => {
   const data = await this.getEnvs();
@@ -84,7 +84,7 @@ module.exports.addEnv = async (cookie, remarks) => {
   return body;
 };
 
-module.exports.updateEnv = async (cookie, eid, remarks, envName = 'elmck') => {
+module.exports.updateEnv = async (cookie, eid, remarks,envName='elmck') => {
   const token = await getToken();
   const body = await api({
     method: 'put',
@@ -105,7 +105,7 @@ module.exports.updateEnv = async (cookie, eid, remarks, envName = 'elmck') => {
   return body;
 };
 
-module.exports.updateEnv11 = async (cookie, eid, remarks, envName = 'elmck') => {
+module.exports.updateEnv11 = async (cookie, eid, remarks,envName='elmck') => {
   const token = await getToken();
   const body = await api({
     method: 'put',
@@ -158,7 +158,7 @@ module.exports.EnableCk = async (eid) => {
   return body;
 };
 
-module.exports.getstatus = async (eid) => {
+module.exports.getstatus = async(eid) => {
   var envs = await getEnvsByName('elmck');
   var tempid = 0;
   for (let i = 0; i < envs.length; i++) {
@@ -176,7 +176,7 @@ module.exports.getstatus = async (eid) => {
   return 99;
 };
 
-module.exports.getEnvById = async (eid) => {
+module.exports.getEnvById = async(eid) => {
   const envs = await this.getEnvs();
   var tempid = 0;
   for (let i = 0; i < envs.length; i++) {
@@ -201,7 +201,7 @@ module.exports.getEnvByUserId = async (userId) => {
     let ck = envs[i].value
     const user_id = ck.match(/USERID=([^; ]+)(?=;?)/) ? ck.match(/USERID=([^; ]+)(?=;?)/)[0] : '123';
 
-    if (user_id.indexOf(userId) !== -1) {
+    if (user_id.indexOf(userId)!==-1) {
       return envs[i]
     }
   }
@@ -218,7 +218,7 @@ module.exports.delEnv = async (eid) => {
     headers: {
       Accept: 'application/json',
       authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json;charset=UTF-8',
+      'Content-Type':'application/json;charset=UTF-8',
     },
   }).json();
   return body;
